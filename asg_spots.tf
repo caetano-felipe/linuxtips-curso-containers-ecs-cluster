@@ -27,6 +27,12 @@ resource "aws_autoscaling_group" "spots" {
     value               = true
     propagate_at_launch = true
   }
+
+  lifecycle {
+    ignore_changes = [
+      desired_capacity
+    ]
+  }
 }
 
 resource "aws_ecs_capacity_provider" "spots" {
